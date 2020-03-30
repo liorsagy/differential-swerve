@@ -1,6 +1,8 @@
-package org.firstinspires.ftc.teamcode.apollo.auto;
+package org.firstinspires.ftc.teamcode.teamcode.apollo.auto;
 
-public class point {
+import android.graphics.Point;
+
+public class point extends Point {
     public double x;
     public double y;
 

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.apollo.auto;
+package org.firstinspires.ftc.teamcode.teamcode.apollo.auto;
 
 import java.util.ArrayList;
 
@@ -55,7 +55,7 @@ public class MathFunction {
             xRoot2 += circleCenter.x;
             yRoot2 += circleCenter.y;
 
-            if (xRoot1 > minX && xRoot1 < maxX){
+            if (xRoot2 > minX && xRoot2 < maxX){
                 allPoints.add(new point( xRoot2, yRoot2));
 
             }
