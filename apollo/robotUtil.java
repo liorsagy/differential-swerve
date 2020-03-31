@@ -10,5 +10,4 @@ public class robotUtil {
     public static double getAngle(){
         return robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
     }
-
 }

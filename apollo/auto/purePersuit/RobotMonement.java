@@ -10,11 +10,11 @@ import java.util.ArrayList;
 public class RobotMonement{
 
     static robot robot;
-    double worldXPosition = 0;
-    double worldYPosition = 0;
+    static double worldXPosition = 0;
+    static double worldYPosition = 0;
 
     //TODO check where use robotLocation
-    public void followCurve(ArrayList<CurvePoint> allPoints, point robotLocation, double followAngle){
+    public static void followCurve(ArrayList<CurvePoint> allPoints, double followAngle){
 
         CurvePoint followMe = getFollowPointPath(allPoints , new point(worldXPosition, worldYPosition), allPoints.get(0 ).followDistance);
 
@@ -53,7 +53,7 @@ public class RobotMonement{
 
 
 
-    public  void  goToPosition(double x,double y , double movementSpeed, double preferredAngle, double turnSpeed){
+    public static void  goToPosition(double x, double y, double movementSpeed, double preferredAngle, double turnSpeed){
 
         double worldXPosition = 0;
         double worldYPosition = 0;
