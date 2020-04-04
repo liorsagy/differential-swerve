@@ -1,11 +1,11 @@
 Options off set motor powers and calculate the module
 
 option one 
-motor 1- vectorLength - z 
+motor 1- vectorLength - rotation 
 motor 2- -vectorLength + z + setModuleAngle(vectorAngle, constant.Kp_moduleRotation)
-calculate the angle-	(motor1.getCurrentPosition() - motor2.getCurrentPosition()) * constant.DEGREE_PER_TICK; //maybe seitch the motor order
+calculate the angle-	(motor1.getCurrentPosition() - motor2.getCurrentPosition()) * constant.DEGREE_PER_TICK; //maybe absolute value
 
 option two 
 motor1- Range.Clip(vectorLength, -0.75, 0.75)+Range.Clip(setModuleAngle(vectorAngle, constant.Kp_moduleRotation), -0.25,0.25)
-motor2- Range.Clip(vectorLength, -0.75, 0.75)-Range.Clip(setModuleAngle(vectorAngle, constant.Kp_moduleRotation), -0.25,0.25)
+motor2- -Range.Clip(vectorLength, -0.75, 0.75)-Range.Clip(setModuleAngle(vectorAngle, constant.Kp_moduleRotation), -0.25,0.25)
 calculate the angle-	(motor1.getCurrentPosition() + motor2.getCurrentPosition()) * constant.DEGREE_PER_TICK;

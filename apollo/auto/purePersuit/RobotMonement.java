@@ -13,7 +13,6 @@ public class RobotMonement{
     static double worldXPosition = 0;
     static double worldYPosition = 0;
 
-    //TODO check where use robotLocation
     public static void followCurve(ArrayList<CurvePoint> allPoints, double followAngle){
 
         CurvePoint followMe = getFollowPointPath(allPoints , new point(worldXPosition, worldYPosition), allPoints.get(0 ).followDistance);

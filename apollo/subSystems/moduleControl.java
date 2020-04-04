@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.teamcode.apollo.constant;
 
-public enum side{left,right;}
+enum side{left,right;}
 
 public class moduleControl {
     private DcMotor motor1;
@@ -24,7 +24,7 @@ public class moduleControl {
 
     public double setModuleAngle(double targetAngle, double Kp) {
         double p = (targetAngle - getModuleAngle()) * Kp;
-        return p = Range.clip(p, -1, 1);
+        return Range.clip(p, -1, 1);
     }
 
     public void moduleSetPower(double vectorAngle, double vectorLength, double z) {

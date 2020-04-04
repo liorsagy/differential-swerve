@@ -16,5 +16,7 @@ public class constant {
 
     static final PIDFCoefficients arm = new PIDFCoefficients(0,0,0,0, MotorControlAlgorithm.PIDF);
 
+    public static final double pixyResolution = 1296*976;
 
+    public static final double pixyOnePercentArea = 12648.96;
 }
