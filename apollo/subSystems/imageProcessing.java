@@ -9,16 +9,17 @@ public class imageProcessing {
     private double width;
     private double height;
 
-    public imageProcessing (double x, double y, double width, double height){
+    //must run in loop
+    public void setValue(double x, double y, double width, double height){
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
     }
 
-    public double percentageArea(){
+    public double getZ(){
         double area = width * height;
-        return area / constant.pixyOnePercentArea;
+        return (area / constant.pixyOnePercentArea)*100;
     }
 
     public double getY() {

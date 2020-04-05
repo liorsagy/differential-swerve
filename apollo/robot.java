@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.apollo;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.*;
 import org.firstinspires.ftc.teamcode.apollo.subSystems.moduleControl;
-import org.firstinspires.ftc.teamcode.apollo.subSystems.side;
+import org.firstinspires.ftc.teamcode.apollo.Enums.side;
 
 public class robot
 {
@@ -42,7 +42,6 @@ public class robot
         yField = hwMap.get(DcMotor.class, "y field");
 
         imu    = hwMap.get(BNO055IMU.class, "imu");
-        pixy   = hwMap.i2cDeviceSynch.get("pixy");
 
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
@@ -59,6 +58,11 @@ public class robot
         left2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         right1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         right2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        left1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        left2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        right1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        right2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         leftModule   = new moduleControl(left1, left2, side.left);
         rightModule  = new moduleControl(right1, right2, side.right);
