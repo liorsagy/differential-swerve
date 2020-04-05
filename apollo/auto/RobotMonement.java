@@ -1,29 +1,31 @@
-package org.firstinspires.ftc.teamcode.teamcode.apollo.auto;
-
-import android.graphics.Point;
+package org.firstinspires.ftc.teamcode.apollo.auto.purePersuit;
 
 import com.qualcomm.robotcore.util.Range;
-import  org.firstinspires.ftc.teamcode.teamcode.apollo.auto.MathFunction;
+import org.firstinspires.ftc.teamcode.apollo.robot;
+import  org.firstinspires.ftc.teamcode.apollo.robotUtil;
+import org.firstinspires.ftc.teamcode.apollo.vector;
 
 import java.util.ArrayList;
 
 public class RobotMonement{
 
+    static robot robot;
+    static double worldXPosition = 0;
+    static double worldYPosition = 0;
 
-    public static void followCurve(ArrayList<CurvePoint> allPoints, point robotLocation, double followAngle){
-        double worldXPosition = 0;
-        double worldYPosition = 0;
-        double worldAngle_rad = Math.toRadians(-180);
+    //hi    
 
-        CurvePoint followMe = getFollowPointPath(allPoints , new Point(worldXPosition, worldYPosition), allPoints.get(0 ),followDistance);
+    public static void followCurve(ArrayList<CurvePoint> allPoints, double followAngle){
+
+        CurvePoint followMe = getFollowPointPath(allPoints , new point(worldXPosition, worldYPosition), allPoints.get(0 ).followDistance);
 
         goToPosition(followMe.x,followMe.y,followMe.moveSpeed, followAngle,followMe.turnSpeed);
     }
 
-    public static CurvePoint getFollowPointPath(ArrayList< CurvePoint> pathPoints, Point robotlocation, double followRadius){
+    public static CurvePoint getFollowPointPath(ArrayList< CurvePoint> pathPoints, point robotlocation, double followRadius){
         double worldXPosition = 0;
         double worldYPosition = 0;
-        double worldAngle_rad = Math.toRadians(-180);
+        double worldAngle_rad = Math.toRadians(robotUtil.getAngle());
 
         CurvePoint followMe = new CurvePoint(pathPoints.get(0));
 
@@ -31,14 +33,14 @@ public class RobotMonement{
             CurvePoint startLine = pathPoints.get(i);
             CurvePoint endLine = pathPoints.get( i +1 );
 
-            ArrayList<Point> intrectionx  = MathFunction.lineCircleintersaction(robotlocation , followRadius , startLine.toPoint(), endLine.toPoint());
+            ArrayList<point> intrectionx  = MathFunction.lineCircleintersaction(robotlocation , followRadius , startLine.toPoint(), endLine.toPoint());
 
-            double cloosetAngle = 100000000;
-            for (Point thisintractiox : intrectionx){
+            double closetAngle = 100000000;
+            for (point thisintractiox : intrectionx){
                 double angle = Math.atan2(thisintractiox.x - worldXPosition, thisintractiox.y - worldYPosition);
                 double deltaAngle = Math.abs(MathFunction.AngelWarp(angle - worldAngle_rad));
-                if ( deltaAngle < cloosetAngle){
-                    cloosetAngle = deltaAngle;
+                if ( deltaAngle < closetAngle){
+                    closetAngle = deltaAngle;
                     followMe.setPoint(thisintractiox);
                 }
             }
@@ -52,11 +54,11 @@ public class RobotMonement{
 
 
 
-    public static  void  goToPosition(double x,double y , double momementSpeed, double preferredAngle, double turnSpeed){
+    public static void  goToPosition(double x, double y, double movementSpeed, double preferredAngle, double turnSpeed){
 
         double worldXPosition = 0;
         double worldYPosition = 0;
-        double worldAngle_rad = Math.toRadians(-180);
+        double worldAngle_rad = Math.toRadians(robotUtil.getAngle());
 
         double distanceToTarget = Math.hypot(x- worldXPosition, y- worldYPosition);
         double absoluteAngleToTarget = Math.atan2(y- worldYPosition, x- worldXPosition);
@@ -68,8 +70,8 @@ public class RobotMonement{
         double movementXPower = relativeXtoPoint / (Math.abs(relativeXtoPoint) + Math.abs(relativeYtoPoint));
         double movementYPower = relativeYtoPoint / (Math.abs(relativeXtoPoint) + Math.abs(relativeYtoPoint));
 
-        double movement_x = movementXPower * momementSpeed;
-        double movement_y = movementYPower * momementSpeed;;
+        double movement_x = movementXPower * movementSpeed;
+        double movement_y = movementYPower * movementSpeed;
 
         double relativeTurnAngle = relativeAngleToPoint - Math.toRadians(180) + preferredAngle;
 
@@ -77,6 +79,10 @@ public class RobotMonement{
         if (distanceToTarget< 10){
             movement_turn = 0;
         }
+        vector vector = new vector(movement_x, movement_y, movement_turn);
+
+        robot.leftModule.moduleSetPower(vector.fieldCentric(),  vector.getVectorLength(), vector.getZ());
+        robot.rightModule.moduleSetPower(vector.fieldCentric(), vector.getVectorLength(), vector.getZ());
 
     }
 }
