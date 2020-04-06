@@ -33,11 +33,12 @@ public class TeleOp extends OpMode {
 
     }
 
+
     @Override
     public void loop() {
         robotTeleOpMode = setRobotTeleOpMode();
         driveTeleOpMode = setDriveMode(robotTeleOpMode);
-        drive(driveTeleOpMode);
+        vector = drive(driveTeleOpMode);
         double vectorLength = vector.getVectorLength();
         double vectorAngle = vector.fieldCentric();
         robot.leftModule.moduleSetPower(vectorAngle, vectorLength, vector.getZ());
@@ -79,10 +80,10 @@ public class TeleOp extends OpMode {
     }
 
 
-        void drive(driveMode driveMode){
+    vector drive(driveMode driveMode){
         switch (driveMode){
             case driver:
-                vector = new vector(gamepad1.left_stick_x, gamepad1.right_stick_y, gamepad1.right_stick_x);
+                return new vector(gamepad1.left_stick_x, gamepad1.right_stick_y, gamepad1.right_stick_x);
             case vision:
                 double x = vision.getX();
                 double y = vision.getY();
@@ -94,14 +95,16 @@ public class TeleOp extends OpMode {
                 }
 
                 if (visionReady){
-                    vector = new vector(0,0,0);
+                    return new vector(0,0,0);
                 }else {
                     vision.setValue(0,0,0,0);
                     double xDrive = robotUtil.p(constant.Kp_visionXY,   vision.getX(), constant.readyVisionX);
                     double yDrive = robotUtil.p(constant.Kp_visionXY,   vision.getY(), constant.readyVisionY);
                     double zDrive = robotUtil.p(constant.Kp_visionArea, vision.getZ(), constant.readyVisionZ);
-                    vector = new vector(xDrive,yDrive,zDrive);
+                    return new vector(xDrive,yDrive,zDrive);
                 }
+            default:
+                return new vector(0, 0, 0);
         }
     }
 
