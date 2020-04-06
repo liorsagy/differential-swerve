@@ -18,7 +18,7 @@ public class moduleControl {
     }
 
     public double getModuleAngle() {
-        return (motor1.getCurrentPosition() + motor2.getCurrentPosition()) * constant.DEGREE_PER_TICK;
+        return (motor1.getCurrentPosition() + motor2.getCurrentPosition()) * constant.tickPerDegree;
     }
 
     public double setModuleAngle(double targetAngle, double Kp) {

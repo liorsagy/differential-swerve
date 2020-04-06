@@ -18,18 +18,22 @@ public class TeleOp extends OpMode {
     imageProcessing vision;
     boolean visionReady = false;
 
+    @Override
     public void init() {
 
     }
 
+    @Override
     public void init_loop() {
 
     }
+
+    @Override
     public void start (){
 
     }
 
-
+    @Override
     public void loop() {
         robotTeleOpMode = setRobotTeleOpMode();
         driveTeleOpMode = setDriveMode(robotTeleOpMode);
@@ -47,6 +51,10 @@ public class TeleOp extends OpMode {
         worldXPosition += Math.cos(worldAngle)*-(worldYPosition-lastY)+Math.cos(worldAngle+90)*-(worldXPosition-lastX);
         lastX = robot.xField.getCurrentPosition();
         lastY = robot.yField.getCurrentPosition();
+    }
+    @Override
+    public void stop() {
+
     }
 
 

@@ -6,16 +6,18 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 //TODO fill all the variables
 public class constant {
 
-    public static final double DEGREE_PER_TICK = 0;
+    public static final double gearBox = 0.07083333;
+
+    public static final double tickPerDegree = 0    ;
 
 
     public static final int offSet = 0;
 
     public static final double wheelDiameter = 0;
 
-    public static final double pixyResolution = 1296*976;
+    public static final double cameraResolution = 1296*976;
 
-    public static final double pixyOnePercentArea = pixyResolution/100;
+    public static final double cameraOnePercentArea = cameraResolution/100;
 
 
     //PID area

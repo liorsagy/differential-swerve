@@ -19,7 +19,7 @@ public class imageProcessing {
 
     public double getZ(){
         double area = width * height;
-        return (area / constant.pixyOnePercentArea)*100;
+        return (area / constant.cameraOnePercentArea)*100;
     }
 
     public double getY() {
