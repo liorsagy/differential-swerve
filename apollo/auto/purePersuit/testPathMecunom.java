@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.apollo.auto;
+package org.firstinspires.ftc.teamcode.apollo.auto.purePersuit;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;

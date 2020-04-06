@@ -62,7 +62,16 @@ public class TeleOp extends OpMode {
     //TODO set robot mode
     robotMode robotTeleOpMode = robotMode.driver;
     robotMode setRobotTeleOpMode(){
-        return robotTeleOpMode;
+        if (gamepad1.a){
+            if (constant.ifvision){
+                constant.ifvision = false;
+                robotTeleOpMode = robotMode.autovision;
+            } else {
+                constant.ifvision = true;
+                robotTeleOpMode = robotMode.driver;
+            }
+        }
+        return  robotTeleOpMode;
     }
 
 

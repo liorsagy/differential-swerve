@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.teamcode.apollo.auto;
+package org.firstinspires.ftc.teamcode.apollo.auto;
 
 import android.graphics.Point;
 

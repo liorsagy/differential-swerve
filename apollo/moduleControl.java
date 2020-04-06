@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.teamcode.apollo;
+package org.firstinspires.ftc.teamcode.apollo;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;

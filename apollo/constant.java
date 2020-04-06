@@ -19,6 +19,8 @@ public class constant {
 
     public static final double cameraOnePercentArea = cameraResolution/100;
 
+    public static boolean ifvision = false;
+
 
     //PID area
     public static final double Kp_moduleRotation = 0;
