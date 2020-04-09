@@ -30,15 +30,23 @@ public class robotModeControl extends OpMode {
                 constant.driveMode = driveMode.driverAndVision;
             case intake:
                 constant.driveMode = driveMode.vision;
+
+            case FAULT:
             case travel:
             case emissionWheel:
                 constant.driveMode = driveMode.driver1;
-            case FAULT:
-                constant.driveMode = driveMode.driver2;
             default:
                 constant.driveMode = constant.driveMode;
         }
 
+        switch (constant.driveMode){
+            case driver1:
+                constant.driveVector = new vector(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
+
+
+
+            constant.driveVector.fieldCentric(constant.offSet);
+        }
     }
     public void verticalLiftModeSelaction(){
         switch (constant.robotMode){

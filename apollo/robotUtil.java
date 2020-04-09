@@ -8,6 +8,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.teamcode.skystone.robot2020;
+import org.opencv.core.Mat;
 
 import java.nio.ByteBuffer;
 
@@ -33,6 +34,4 @@ public class robotUtil {
         lastX = robot.xField.getCurrentPosition();
         lastY = robot.yField.getCurrentPosition();
     }
-
-
 }

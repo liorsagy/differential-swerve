@@ -62,7 +62,8 @@ public class constant2020 {
     public static final PIDFCoefficients hlPIDF = new PIDFCoefficients(hl_Kp, hl_Ki, hl_Kd, hl_Kf);
 
     //servos area
-    public static final double capston_open = 0;
+    public static final double capston_open =
+;
     public static final double capston_close = 0;
 
     public static final double front_open = 0;
@@ -96,4 +97,5 @@ public class constant2020 {
     public static double foundationWantedPos;
     public static double backWantedPos;
     public static double frontWantedPos;
+
 }
