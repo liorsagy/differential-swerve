@@ -19,30 +19,30 @@ public class RobotMonement{
 
     //hi    
 
-    public static void followCurve(ArrayList<org.firstinspires.ftc.teamcode.apollo.auto.purePersuit.CurvePoint> allPoints, double followAngle){
+    public static void followCurve(ArrayList<CurvePoint> allPoints, double followAngle){
 
-        org.firstinspires.ftc.teamcode.apollo.auto.purePersuit.CurvePoint followMe = getFollowPointPath(allPoints , new org.firstinspires.ftc.teamcode.apollo.auto.purePersuit.point(worldXPosition, worldYPosition), allPoints.get(0 ).followDistance);
+        CurvePoint followMe = getFollowPointPath(allPoints , new point(worldXPosition, worldYPosition), allPoints.get(0 ).followDistance);
 
         goToPosition(followMe.x,followMe.y,followMe.moveSpeed, followAngle,followMe.turnSpeed);
     }
 
-    public static org.firstinspires.ftc.teamcode.apollo.auto.purePersuit.CurvePoint getFollowPointPath(ArrayList<org.firstinspires.ftc.teamcode.apollo.auto.purePersuit.CurvePoint> pathPoints, org.firstinspires.ftc.teamcode.apollo.auto.purePersuit.point robotlocation, double followRadius){
+    public static CurvePoint getFollowPointPath(ArrayList<CurvePoint> pathPoints, point robotlocation, double followRadius){
         double worldXPosition = 0;
         double worldYPosition = 0;
         double worldAngle_rad = Math.toRadians(robotUtil.getAngle());
 
-        org.firstinspires.ftc.teamcode.apollo.auto.purePersuit.CurvePoint followMe = new org.firstinspires.ftc.teamcode.apollo.auto.purePersuit.CurvePoint(pathPoints.get(0));
+        CurvePoint followMe = new CurvePoint(pathPoints.get(0));
 
         for(int i = 0 ; i < pathPoints.size() ; i ++ ) {
-            org.firstinspires.ftc.teamcode.apollo.auto.purePersuit.CurvePoint startLine = pathPoints.get(i);
+            CurvePoint startLine = pathPoints.get(i);
             CurvePoint endLine = pathPoints.get( i +1 );
 
-            ArrayList<org.firstinspires.ftc.teamcode.apollo.auto.purePersuit.point> intrectionx  = org.firstinspires.ftc.teamcode.apollo.auto.purePersuit.MathFunction.lineCircleintersaction(robotlocation , followRadius , startLine.toPoint(), endLine.toPoint());
+            ArrayList<point> intrectionx  = MathFunction.lineCircleintersaction(robotlocation , followRadius , startLine.toPoint(), endLine.toPoint());
 
             double closetAngle = 100000000;
             for (point thisintractiox : intrectionx){
                 double angle = Math.atan2(thisintractiox.x - worldXPosition, thisintractiox.y - worldYPosition);
-                double deltaAngle = Math.abs(org.firstinspires.ftc.teamcode.apollo.auto.purePersuit.MathFunction.AngelWarp(angle - worldAngle_rad));
+                double deltaAngle = Math.abs(MathFunction.AngelWarp(angle - worldAngle_rad));
                 if ( deltaAngle < closetAngle){
                     closetAngle = deltaAngle;
                     followMe.setPoint(thisintractiox);

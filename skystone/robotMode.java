@@ -42,6 +42,7 @@ enum catchBackMode{
 enum foundationMode{
     open,
     close;
+
 }
 enum intakeMode{
     stati,

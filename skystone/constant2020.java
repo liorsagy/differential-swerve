@@ -1,7 +1,12 @@
 package org.firstinspires.ftc.teamcode.skystone;
 
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
+
+import org.firstinspires.ftc.teamcode.apollo.vector;
+
+import java.util.Vector;
 
 //TODO fill all the variables
 public class constant2020 {
@@ -79,4 +84,16 @@ public class constant2020 {
     intakeMode intakeMode;
     capstoneMode capstoneMode;
     foundationMode foundationMode;
+    RevBlinkinLedDriver.BlinkinPattern ledcolor;
+
+
+    vector driveVector;
+
+    //pos area
+    public static double verticalWantedPos;
+    public static double horizontalWantedPos;
+    public static double capstoneWantedPos;
+    public static double foundationWantedPos;
+    public static double backWantedPos;
+    public static double frontWantedPos;
 }
