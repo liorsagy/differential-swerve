@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.apollo.subSystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
-import org.firstinspires.ftc.teamcode.apollo.Enums.side;
+import org.firstinspires.ftc.teamcode.apollo.swerve.Enums.side;
 import org.firstinspires.ftc.teamcode.apollo.constant;
 
 public class moduleControl {
@@ -27,7 +27,7 @@ public class moduleControl {
     }
 
     public void moduleSetPower(double vectorAngle, double vectorLength, double z) {
-        if (side == org.firstinspires.ftc.teamcode.apollo.Enums.side.left) {
+        if (side == org.firstinspires.ftc.teamcode.apollo.swerve.Enums.side.left) {
             motor1.setPower(Range.clip(vectorLength - z, -1, 1));
             motor2.setPower(Range.clip(-vectorLength + z + (setModuleAngle(vectorAngle, constant.Kp_moduleRotation)), -1, 1));
         } else{
