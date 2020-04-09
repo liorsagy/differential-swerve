@@ -52,6 +52,8 @@ public class constant2020 {
     public static final double vl_Kf = 0;
     public static final double vl_Kv = 0;//motor rpm
     public static final PIDFCoefficients vlPIDF = new PIDFCoefficients(vl_Kp, vl_Ki,vl_Kd,vl_Kf);
+    public static final int vl_smallestPosition = 0;
+    public static final int vl_largestPosition = 0;
 
     //horiznotal lift area
     public static final double hl_Kp = 0;
@@ -60,10 +62,11 @@ public class constant2020 {
     public static final double hl_Kf = 0;
     public static final double hl_Kv = 0;//motor rpm
     public static final PIDFCoefficients hlPIDF = new PIDFCoefficients(hl_Kp, hl_Ki, hl_Kd, hl_Kf);
+    public static final double hl_smallestPosition = 0;
+    public static final double hl_largestPosition = 0;
 
     //servos area
-    public static final double capston_open =
-;
+    public static final double capston_open = 0;
     public static final double capston_close = 0;
 
     public static final double front_open = 0;
