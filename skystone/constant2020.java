@@ -94,11 +94,11 @@ public class constant2020 {
     vector driveVector;
 
     //pos area
-    public static double verticalWantedPos;
-    public static double horizontalWantedPos;
-    public static double capstoneWantedPos;
-    public static double foundationWantedPos;
-    public static double backWantedPos;
-    public static double frontWantedPos;
+    public static int verticalWantedPos;
+    public static int horizontalWantedPos;
+    public static int capstoneWantedPos;
+    public static int foundationWantedPos;
+    public static int backWantedPos;
+    public static int frontWantedPos;
 
 }

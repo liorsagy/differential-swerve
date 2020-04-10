@@ -38,8 +38,6 @@ public class TeleOp2020 extends OpMode {
 
     @Override
     public void loop() {
-
-
         //must to be in loop
         robotUtil.worldPosition();
     }
