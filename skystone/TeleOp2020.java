@@ -11,18 +11,14 @@ import org.firstinspires.ftc.teamcode.apollo.vector;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "Diff Swerve TeleOp", group = "TeleOp")
 public class TeleOp2020 extends OpMode {
-    robotSwerve robot;
-
-
-    int lastX;
-    int lastY;
+    robot2020 robot;
+    robotModeControl mode;
     org.firstinspires.ftc.teamcode.apollo.vector vector;
     imageProcessing vision;
-    boolean visionReady = false;
 
     @Override
     public void init() {
-
+        robot.init(hardwareMap);
     }
 
     @Override
@@ -40,6 +36,7 @@ public class TeleOp2020 extends OpMode {
     public void loop() {
         //must to be in loop
         robotUtil.worldPosition();
+        
     }
     @Override
     public void stop() {

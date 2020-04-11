@@ -55,6 +55,13 @@ public class constant2020 {
     public static final int vl_smallestPosition = 0;
     public static final int vl_largestPosition = 0;
 
+    public static final int vl_closePosition = 0;
+    public static  int floor = 0;
+    public static final int cubeHeight = 0;
+    public static final int startingHeight = 0;
+
+    public static final double vl_factor = 0;
+
     //horiznotal lift area
     public static final double hl_Kp = 0;
     public static final double hl_Ki = 0;
@@ -62,8 +69,14 @@ public class constant2020 {
     public static final double hl_Kf = 0;
     public static final double hl_Kv = 0;//motor rpm
     public static final PIDFCoefficients hlPIDF = new PIDFCoefficients(hl_Kp, hl_Ki, hl_Kd, hl_Kf);
-    public static final double hl_smallestPosition = 0;
-    public static final double hl_largestPosition = 0;
+    public static final int hl_smallestPosition = 0;
+    public static final int hl_largestPosition = 0;
+
+    public static final int hl_closePosition = 0;
+    public static final int hl_openPosition = 0;
+    public static final double hl_factor = 0;
+
+
 
     //servos area
     public static final double capston_open = 0;
@@ -96,9 +109,26 @@ public class constant2020 {
     //pos area
     public static int verticalWantedPos;
     public static int horizontalWantedPos;
-    public static int capstoneWantedPos;
-    public static int foundationWantedPos;
-    public static int backWantedPos;
-    public static int frontWantedPos;
+    public static double capstoneWantedPos;
+    public static double foundationWantedPos;
+    public static double backWantedPos;
+    public static double frontWantedPos;
+
+    //vision area
+     public static boolean visionReady = false;
+     public static int xRange = 0;
+     public static int yRange = 0;
+     public static int zRange = 0;
+     public static
+     public static
+     public static
+     public static
+     public static
+
+
+
+    //last area
+    public static boolean last_dpad_up ;
+    public static boolean last_dpad_down;
 
 }
