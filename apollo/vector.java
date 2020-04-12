@@ -33,13 +33,9 @@ public class vector {
         return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
     }
 
-    public double vectorAngle(double offset) {
-        double joystickAngle180 = Math.toDegrees(Math.atan2(y, x));
-        double joystickAngle360 = (joystickAngle180 + 360) % 360;
-        double robotAngle180 = robotUtil.getAngle() + offset;
-        double robotAngle360 = (robotAngle180 + 360) % 360;
-        double finalAngle180 = robotAngle360 + joystickAngle360;
-        return (finalAngle180 + 360) % 360;
+    public double vectorAngle() {
+        double vectorAngle = Math.toDegrees(Math.atan2(y,x));
+        return  (vectorAngle+360)%360;
     }
 
     public void fieldCentric(double offset) {

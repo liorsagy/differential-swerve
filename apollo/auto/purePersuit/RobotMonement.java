@@ -81,8 +81,8 @@ public class RobotMonement{
         }
         vector vector = new vector(movement_x, movement_y, movement_turn);
 
-        robot.leftModule.moduleSetPower(vector.fieldCentric(),  vector.getVectorLength(), vector.getZ());
-        robot.rightModule.moduleSetPower(vector.fieldCentric(), vector.getVectorLength(), vector.getZ());
+        robot.leftModule.moduleSetPower(vector.vectorAngle(),  vector.getVectorLength(), vector.getZ());
+        robot.rightModule.moduleSetPower(vector.vectorAngle(), vector.getVectorLength(), vector.getZ());
 
     }
 }

@@ -6,9 +6,11 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 //TODO fill all the variables
 public class constant {
 
-    public static final double gearBox = 0.07083333;
+    public static final double gearBox = 17/12/10/10/40/12;
+    public static final double tickPerRevolotion = 537.6;
+    public static final double tickPerDegree = tickPerRevolotion*gearBox;
 
-    public static final double tickPerDegree = 0    ;
+    public static boolean reverse;
 
 
     public static final int offSet = 0;
@@ -34,5 +36,7 @@ public class constant {
     public static final double readyVisionX = 0;
     public static final double readyVisionY = 0;
     public static final double readyVisionZ = 0;
+
+
 
 }

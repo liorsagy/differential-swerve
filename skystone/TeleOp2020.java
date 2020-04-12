@@ -32,20 +32,8 @@ public class TeleOp2020 extends OpMode {
 
     @Override
     public void loop() {
-        mode.robotModeSelaction();
-        mode.driveModeSelaction(robot.pixy);
-        mode.intakeModeSelaction(robot.intakeLeft, robot.intakeRight);
-        mode.horizntoalLiftModeSelaction(robot.liftHorizontal);
-        mode.verticalLiftModeSelaction(robot.liftVertical);
-        mode.catchFrontModeSelaction(robot.front);
-        mode.catchBackModeSelaction(robot.back);
-        mode.capstoneModeSelaction(robot.capstone);
-        mode.foundationModeSelaction(robot.foundationLeft, robot.foundationRight);
-        mode.ledSelaction(robot.led);
-
-        //must to be in loop
+        mode.TeleopModeChooser(robot);
         robotUtil.worldPosition();
-        
     }
     @Override
     public void stop() {

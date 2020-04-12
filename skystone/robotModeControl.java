@@ -275,19 +275,17 @@ public class robotModeControl extends OpMode {
     }
 
 
-    public void TeleopModeChooser(I2cDeviceSynch pixy, DcMotor intakeLeft, DcMotor intakeRight, DcMotorEx liftHorizontal,
-                                  DcMotorEx liftVertical, Servo front, Servo back, Servo capstone, Servo foundationLeft,
-                                  Servo foundationRight, RevBlinkinLedDriver led){
+    public void TeleopModeChooser(robot2020 robot){
         robotModeSelaction();
-        driveModeSelaction(pixy);
-        intakeModeSelaction(intakeLeft, intakeRight);
-        horizntoalLiftModeSelaction(liftHorizontal);
-        verticalLiftModeSelaction(liftVertical);
-        catchFrontModeSelaction(front);
-        catchBackModeSelaction(back);
-        capstoneModeSelaction(capstone);
-        foundationModeSelaction(foundationLeft, foundationRight);
-        ledSelaction(led);
+        driveModeSelaction(robot.pixy);
+        intakeModeSelaction(robot.intakeLeft, robot.intakeRight);
+        horizntoalLiftModeSelaction(robot.liftHorizontal);
+        verticalLiftModeSelaction(robot.liftVertical);
+        catchFrontModeSelaction(robot.front);
+        catchBackModeSelaction(robot.back);
+        capstoneModeSelaction(robot.capstone);
+        foundationModeSelaction(robot.foundationLeft, robot.foundationRight);
+        ledSelaction(robot.led);
 
     }
 

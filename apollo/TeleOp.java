@@ -40,7 +40,7 @@ public class TeleOp extends OpMode {
         driveTeleOpMode = setDriveMode(robotTeleOpMode);
         vector = drive(driveTeleOpMode);
         double vectorLength = vector.getVectorLength();
-        double vectorAngle = vector.vectorAngle(constant.offSet);
+        double vectorAngle = vector.vectorAngle();
         robot.leftModule.moduleSetPower(vectorAngle, vectorLength, vector.getZ());
         robot.rightModule.moduleSetPower(vectorAngle, vectorLength, vector.getZ());
 
