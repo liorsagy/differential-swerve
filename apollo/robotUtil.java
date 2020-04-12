@@ -34,4 +34,8 @@ public class robotUtil {
         lastX = robot.xField.getCurrentPosition();
         lastY = robot.yField.getCurrentPosition();
     }
+
+    public static void setPower(DcMotorEx motor, int target, int min, int max){
+        motor.setTargetPosition(Range.clip(target, min, max));
+    }
 }

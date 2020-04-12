@@ -119,11 +119,6 @@ public class constant2020 {
      public static int xRange = 0;
      public static int yRange = 0;
      public static int zRange = 0;
-     public static
-     public static
-     public static
-     public static
-     public static
 
 
 

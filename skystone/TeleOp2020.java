@@ -13,8 +13,6 @@ import org.firstinspires.ftc.teamcode.apollo.vector;
 public class TeleOp2020 extends OpMode {
     robot2020 robot;
     robotModeControl mode;
-    org.firstinspires.ftc.teamcode.apollo.vector vector;
-    imageProcessing vision;
 
     @Override
     public void init() {
@@ -34,6 +32,16 @@ public class TeleOp2020 extends OpMode {
 
     @Override
     public void loop() {
+        mode.robotModeSelaction();
+        mode.intakeModeSelaction(robot.intakeLeft, robot.intakeRight);
+        mode.horizntoalLiftModeSelaction(robot.liftHorizontal);
+        mode.verticalLiftModeSelaction(robot.liftVertical);
+        mode.catchFrontModeSelaction(robot.front);
+        mode.catchBackModeSelaction(robot.back);
+        mode.capstoneModeSelaction(robot.capstone);
+        mode.foundationModeSelaction(robot.foundationLeft, robot.foundationRight);
+        mode.ledSelaction(robot.led);
+
         //must to be in loop
         robotUtil.worldPosition();
         

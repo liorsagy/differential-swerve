@@ -45,12 +45,11 @@ public class robot2020
 
     public DistanceSensor cubeDectector;
 
-    public I2cDeviceSynch pixyIntake;
-    public I2cDeviceSynch pixyEmission;
+    public I2cDeviceSynch pixy;
 
     public RevBlinkinLedDriver led;
 
-    HardwareMap hwMap           =  null;
+    HardwareMap hwMap;
 
     constant2020 constant;
 
@@ -87,8 +86,7 @@ public class robot2020
 
         cubeDectector = hwMap.get(DistanceSensor.class, "cube");
 
-        pixyIntake = hwMap.get(I2cDeviceSynch.class, "pixy intake");
-        pixyEmission = hwMap.get(I2cDeviceSynch.class, "pixy emission");
+        pixy = hwMap.get(I2cDeviceSynch.class, "pixy");
 
         led = hwMap.get(RevBlinkinLedDriver.class, "led");
 
@@ -119,12 +117,8 @@ public class robot2020
         parameters.calibrationDataFile = "BNO055IMUCalibration.json";
         imu.initialize(parameters);
 
-        pixyIntake.setI2cAddress(I2cAddr.create7bit(0x54));
-        I2cDeviceSynch.ReadWindow readWindowIntake = new I2cDeviceSynch.ReadWindow (1, 26, I2cDeviceSynch.ReadMode.REPEAT);
-        pixyIntake.setReadWindow(readWindowIntake);
-
-        pixyEmission.setI2cAddress(I2cAddr.create7bit(0x54));
-        I2cDeviceSynch.ReadWindow readWindowEmission = new I2cDeviceSynch.ReadWindow (1, 26, I2cDeviceSynch.ReadMode.REPEAT);
-        pixyEmission.setReadWindow(readWindowEmission);
+        pixy.setI2cAddress(I2cAddr.create7bit(0x54));
+        I2cDeviceSynch.ReadWindow readWindow = new I2cDeviceSynch.ReadWindow (1, 26, I2cDeviceSynch.ReadMode.REPEAT);
+        pixy.setReadWindow(readWindow);
     }
 }

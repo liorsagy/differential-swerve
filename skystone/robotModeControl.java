@@ -2,6 +2,9 @@ package org.firstinspires.ftc.teamcode.skystone;
 
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.apollo.constant;
@@ -17,14 +20,12 @@ public class robotModeControl extends OpMode {
 
     public void robotModeSelaction(){
         if (gamepad1.x) constant.robotMode = robotMode.travel;
-        else if (gamepad1.a) constant.robotMode =  robotMode.capstone;
-        else if (gamepad1.b) constant.robotMode =  robotMode.emission;
-        else if (gamepad1.y) constant.robotMode =  robotMode.emissionWheel;
-        else if (gamepad1.left_bumper) constant.robotMode = robotMode.intake;
-        else if (gamepad1.right_bumper) constant.robotMode = robotMode.foundation;
-        else if (false) constant.robotMode = robotMode.FAULT;
-        else   constant.robotMode = constant.robotMode;
-
+        if (gamepad1.a) constant.robotMode =  robotMode.capstone;
+        if (gamepad1.b) constant.robotMode =  robotMode.emission;
+        if (gamepad1.y) constant.robotMode =  robotMode.emissionWheel;
+        if (gamepad1.left_bumper) constant.robotMode = robotMode.intake;
+        if (gamepad1.right_bumper) constant.robotMode = robotMode.foundation;
+        if (false) constant.robotMode = robotMode.FAULT;
     }
 
     public void driveModeSelaction(){
@@ -44,7 +45,7 @@ public class robotModeControl extends OpMode {
                 constant.driveMode = constant.driveMode;
         }
 
-        switch (constant.driveMode){
+        switch (constant.driveMode) {
             case driver1:
                 constant.driveVector = new vector(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
             case vision:
@@ -52,43 +53,44 @@ public class robotModeControl extends OpMode {
                 double x = vision.getX();
                 double y = vision.getY();
                 double z = vision.getZ();
-                if (constant.xRange + 50 > x && constant.xRange -50 < x && constant.yRange + 50 > y && constant.yRange -50 < x && constant.zRange + 50 > z && constant.zRange -50 < z){
+                if (constant.xRange + 50 > x && constant.xRange - 50 < x && constant.yRange + 50 > y && constant.yRange - 50 < x && constant.zRange + 50 > z && constant.zRange - 50 < z) {
                     constant.visionReady = false;
-                } else{
+                } else {
                     constant.visionReady = true;
                 }
 
-                if (constant.visionReady){
-                    constant.driveVector = new vector(0,0,0);
-                }else {
-                    vision.setValue(0,0,0,0);
-                    double xDrive = robotUtil.p(org.firstinspires.ftc.teamcode.apollo.constant.Kp_visionXY,   vision.getX(), org.firstinspires.ftc.teamcode.apollo.constant.readyVisionX);
-                    double yDrive = robotUtil.p(org.firstinspires.ftc.teamcode.apollo.constant.Kp_visionXY,   vision.getY(), org.firstinspires.ftc.teamcode.apollo.constant.readyVisionY);
+                if (constant.visionReady) {
+                    constant.driveVector = new vector(0, 0, 0);
+                } else {
+                    vision.setValue(0, 0, 0, 0);
+                    double xDrive = robotUtil.p(org.firstinspires.ftc.teamcode.apollo.constant.Kp_visionXY, vision.getX(), org.firstinspires.ftc.teamcode.apollo.constant.readyVisionX);
+                    double yDrive = robotUtil.p(org.firstinspires.ftc.teamcode.apollo.constant.Kp_visionXY, vision.getY(), org.firstinspires.ftc.teamcode.apollo.constant.readyVisionY);
                     double zDrive = robotUtil.p(org.firstinspires.ftc.teamcode.apollo.constant.Kp_visionArea, vision.getZ(), org.firstinspires.ftc.teamcode.apollo.constant.readyVisionZ);
-                    constant.driveVector = new vector(yDrive,zDrive,xDrive);
+                    constant.driveVector =  new vector(yDrive, zDrive, xDrive);
                 }
             case driverAndVision:
                 vision.pixyContorl(robot.pixyIntake);
                 double x2 = vision.getX();
                 double y2 = vision.getY();
-                if (constant.xRange + 50 > x2 && constant.xRange -50 < x2 && constant.yRange + 50 > y2 && constant.yRange -50 < y2 ){
+                if (constant.xRange + 50 > x2 && constant.xRange - 50 < x2 && constant.yRange + 50 > y2 && constant.yRange - 50 < y2) {
                     constant.visionReady = false;
-                } else{
+                } else {
                     constant.visionReady = true;
                 }
 
-                if (constant.visionReady){
-                    constant.driveVector = new vector(0,gamepad1.left_stick_y,0);
-                }else {
-                    vision.setValue(0,0,0,0);
-                    double xDrive = robotUtil.p(org.firstinspires.ftc.teamcode.apollo.constant.Kp_visionXY,   vision.getX(), org.firstinspires.ftc.teamcode.apollo.constant.readyVisionX);
-                    double yDrive = robotUtil.p(org.firstinspires.ftc.teamcode.apollo.constant.Kp_visionXY,   vision.getY(), org.firstinspires.ftc.teamcode.apollo.constant.readyVisionY);
-                    constant.driveVector = new vector(yDrive,gamepad1.left_stick_y,xDrive);
+                if (constant.visionReady) {
+                    constant.driveVector = new vector(0, gamepad1.left_stick_y, 0);
+                } else {
+                    vision.setValue(0, 0, 0, 0);
+                    double xDrive = robotUtil.p(org.firstinspires.ftc.teamcode.apollo.constant.Kp_visionXY, vision.getX(), org.firstinspires.ftc.teamcode.apollo.constant.readyVisionX);
+                    double yDrive = robotUtil.p(org.firstinspires.ftc.teamcode.apollo.constant.Kp_visionXY, vision.getY(), org.firstinspires.ftc.teamcode.apollo.constant.readyVisionY);
+                    constant.driveVector =  new vector(yDrive, gamepad1.left_stick_y, xDrive);
                 }
         }
-
+        constant.driveVector.fieldCentric(constant.offSet);
     }
-    public void verticalLiftModeSelaction(){
+
+    public void verticalLiftModeSelaction(DcMotorEx motor){
         switch (constant.robotMode){
             case emissionWheel:
             case travel:
@@ -110,18 +112,18 @@ public class robotModeControl extends OpMode {
 
         switch (constant.verticalLiftMode){
             case close:
-                constant.verticalWantedPos = constant.vl_closePosition;
+                constant.verticalWantedPos   = constant.vl_closePosition;
             case byHeight:
                 if (constant.floor == 1) constant.verticalWantedPos = constant.startingHeight;
                 else {
-                    constant.verticalWantedPos = constant.floor * constant.cubeHeight + constant.startingHeight;
+                    constant2020.verticalWantedPos =  constant.floor * constant.cubeHeight + constant.startingHeight;
                 }
             case FAULT:
                 constant.verticalWantedPos +=  gamepad2.right_stick_y * constant.vl_factor;
         }
-        robot.liftVertical.setTargetPosition(Range.clip(constant.verticalWantedPos, constant.vl_smallestPosition, constant.vl_largestPosition));
+        robotUtil.setPower(motor, constant2020.verticalWantedPos, constant.vl_smallestPosition, constant.vl_largestPosition);
     }
-    public void horizntoalLiftModeSelaction(){
+    public void horizntoalLiftModeSelaction(DcMotorEx motor){
         switch (constant.robotMode){
             case emission:
             case capstone:
@@ -141,13 +143,13 @@ public class robotModeControl extends OpMode {
             case close:
                 constant.horizontalWantedPos = constant.hl_closePosition;
             case open:
-                constant.horizontalWantedPos = constant.hl_openPosition;
+                constant.horizontalWantedPos =  constant.hl_openPosition;
             case FAULT:
                 constant.horizontalWantedPos += gamepad2.left_stick_y * constant.hl_factor;
         }
-        robot.liftHorizontal.setTargetPosition(Range.clip(constant.horizontalWantedPos, constant.hl_smallestPosition , constant.hl_largestPosition));
+        robotUtil.setPower(motor, constant2020.horizontalWantedPos, constant.hl_smallestPosition, constant.hl_largestPosition);
     }
-    public void capstoneModeSelaction(){
+    public void capstoneModeSelaction(Servo servo){
         switch (constant.robotMode){
             case emission:
             case foundation:
@@ -159,14 +161,12 @@ public class robotModeControl extends OpMode {
                 constant.capstoneMode = capstoneMode.open;
             case FAULT:
                 constant.capstoneMode = capstoneMode.close;
-            default:
-                constant.capstoneMode = constant.capstoneMode;
         }
         if (constant.capstoneMode == capstoneMode.close) constant.capstoneWantedPos = constant.capston_close;
-        if (constant.capstoneMode == capstoneMode.open)  constant.capstoneWantedPos = constant.capston_open;
-
+        if (constant.capstoneMode == capstoneMode.open)  constant.capstoneWantedPos =  constant.capston_open;
+        servo.setPosition(constant.capstoneWantedPos);
     }
-    public void catchFrontModeSelaction(){
+    public void catchFrontModeSelaction(Servo servo){
         switch (constant.robotMode){
             case travel:
             case emissionWheel:
@@ -179,13 +179,12 @@ public class robotModeControl extends OpMode {
                 //TODO להוסיף שליטה לפי כפתור
             case FAULT:
                 constant.catchFrontMode = catchFrontMode.close;
-            default:
-                constant.catchFrontMode = constant.catchFrontMode;
         }
         if (constant.catchFrontMode == catchFrontMode.close) constant.frontWantedPos = constant.front_close;
         if (constant.catchFrontMode == catchFrontMode.open)  constant.frontWantedPos = constant.front_open;
+        servo.setPosition(constant.frontWantedPos);
     }
-    public void catchBackModeSelaction(){
+    public void catchBackModeSelaction(Servo servo){
         switch (constant.robotMode){
             case travel:
             case intake:
@@ -202,8 +201,10 @@ public class robotModeControl extends OpMode {
         }
         if (constant.catchBackMode == catchBackMode.close) constant.backWantedPos = constant.back_close;
         if (constant.catchBackMode == catchBackMode.open)  constant.backWantedPos = constant.back_open;
+        servo.setPosition(constant.backWantedPos);
     }
-    public void foundationModeSelaction(){
+
+    public void foundationModeSelaction(Servo servo1, Servo servo2){
         switch (constant.robotMode){
             case emission:
             case capstone:
@@ -219,8 +220,11 @@ public class robotModeControl extends OpMode {
         }
         if (constant.foundationMode == foundationMode.close) constant.foundationWantedPos = constant.foundation_close;
         if (constant.foundationMode == foundationMode.open)  constant.foundationWantedPos = constant.foundation_open;
+        servo1.setPosition(constant.foundationWantedPos);
+        servo2.setPosition(constant.foundationWantedPos);
     }
-    public void intakeModeSelaction(){
+
+    public void intakeModeSelaction(DcMotor motor1, DcMotor motor2){
         switch (constant.robotMode){
             case emission:
             case travel:
@@ -233,22 +237,21 @@ public class robotModeControl extends OpMode {
                 constant.intakeMode = intakeMode.outside;
             case FAULT:
                 constant.intakeMode = intakeMode.stati;
-            default:
-               constant.intakeMode =  constant.intakeMode;
         }
         switch (constant.intakeMode){
             case inside:
-                robot.intakeLeft.setPower(1);
-                robot.intakeRight.setPower(-1);
+                motor1.setPower(1);
+                motor2.setPower(-1);
             case outside:
-                robot.intakeLeft.setPower(-1);
-                robot.intakeRight.setPower(1);
+                motor1.setPower(-1);
+                motor2.setPower(1);
             case stati:
-                robot.intakeLeft.setPower(0);
-                robot.intakeRight.setPower(0);
+                motor1.setPower(0);
+                motor2.setPower(0);
         }
     }
-    public void ledSelaction(){
+
+    public void ledSelaction(RevBlinkinLedDriver led){
         switch (constant.robotMode){
             case emission:
                 constant.ledcolor =  RevBlinkinLedDriver.BlinkinPattern.YELLOW;
@@ -267,7 +270,7 @@ public class robotModeControl extends OpMode {
             default:
                 constant.ledcolor =  RevBlinkinLedDriver.BlinkinPattern.RED;
         }
-        robot.led.setPattern(constant.ledcolor);
+        led.setPattern(constant.ledcolor);
     }
 
 
