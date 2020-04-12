@@ -33,6 +33,7 @@ public class TeleOp2020 extends OpMode {
     @Override
     public void loop() {
         mode.robotModeSelaction();
+        mode.driveModeSelaction(robot.pixy);
         mode.intakeModeSelaction(robot.intakeLeft, robot.intakeRight);
         mode.horizntoalLiftModeSelaction(robot.liftHorizontal);
         mode.verticalLiftModeSelaction(robot.liftVertical);

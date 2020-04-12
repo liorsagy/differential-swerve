@@ -4,6 +4,7 @@ import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.I2cDeviceSynch;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
@@ -28,7 +29,7 @@ public class robotModeControl extends OpMode {
         if (false) constant.robotMode = robotMode.FAULT;
     }
 
-    public void driveModeSelaction(){
+    public void driveModeSelaction(I2cDeviceSynch pixy){
         switch (constant.robotMode){
             case emission:
             case foundation:
@@ -49,7 +50,7 @@ public class robotModeControl extends OpMode {
             case driver1:
                 constant.driveVector = new vector(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
             case vision:
-                vision.pixyContorl(robot.pixyIntake);
+                vision.pixyContorl(pixy);
                 double x = vision.getX();
                 double y = vision.getY();
                 double z = vision.getZ();
@@ -69,7 +70,7 @@ public class robotModeControl extends OpMode {
                     constant.driveVector =  new vector(yDrive, zDrive, xDrive);
                 }
             case driverAndVision:
-                vision.pixyContorl(robot.pixyIntake);
+                vision.pixyContorl(pixy);
                 double x2 = vision.getX();
                 double y2 = vision.getY();
                 if (constant.xRange + 50 > x2 && constant.xRange - 50 < x2 && constant.yRange + 50 > y2 && constant.yRange - 50 < y2) {
@@ -273,6 +274,36 @@ public class robotModeControl extends OpMode {
         led.setPattern(constant.ledcolor);
     }
 
+
+    public void TeleopModeChooser(I2cDeviceSynch pixy, DcMotor intakeLeft, DcMotor intakeRight, DcMotorEx liftHorizontal,
+                                  DcMotorEx liftVertical, Servo front, Servo back, Servo capstone, Servo foundationLeft,
+                                  Servo foundationRight, RevBlinkinLedDriver led){
+        robotModeSelaction();
+        driveModeSelaction(pixy);
+        intakeModeSelaction(intakeLeft, intakeRight);
+        horizntoalLiftModeSelaction(liftHorizontal);
+        verticalLiftModeSelaction(liftVertical);
+        catchFrontModeSelaction(front);
+        catchBackModeSelaction(back);
+        capstoneModeSelaction(capstone);
+        foundationModeSelaction(foundationLeft, foundationRight);
+        ledSelaction(led);
+
+    }
+
+    public void AutoModeChooser( DcMotor intakeLeft, DcMotor intakeRight, DcMotorEx liftHorizontal,
+                                  DcMotorEx liftVertical, Servo front, Servo back, Servo capstone, Servo foundationLeft, Servo foundationRight,
+                                  RevBlinkinLedDriver led){
+        intakeModeSelaction(intakeLeft, intakeRight);
+        horizntoalLiftModeSelaction(liftHorizontal);
+        verticalLiftModeSelaction(liftVertical);
+        catchFrontModeSelaction(front);
+        catchBackModeSelaction(back);
+        capstoneModeSelaction(capstone);
+        foundationModeSelaction(foundationLeft, foundationRight);
+        ledSelaction(led);
+
+    }
 
 
 
