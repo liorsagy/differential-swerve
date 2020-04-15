@@ -1,8 +1,7 @@
 package org.firstinspires.ftc.teamcode.apollo.auto.purePersuit;
 
-import android.graphics.Point;
 
-public class point extends Point {
+public class point{
     public double x;
     public double y;
 

@@ -1,8 +1,7 @@
 package org.firstinspires.ftc.teamcode.skystone.purePersuit;
 
-import android.graphics.Point;
 
-public class point extends Point {
+public class point{
     public double x;
     public double y;
 
